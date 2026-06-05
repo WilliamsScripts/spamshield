@@ -34,11 +34,26 @@ export default function HomeScreen() {
     }
   }, [text]);
 
+  const close = () => {
+    setResult(null);
+    setText("");
+  };
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: theme.bg, padding: 16 }}>
       {!isLoading &&
         (result ? (
-          <ResultCard data={result} />
+          <View style={{ flex: 1, position: "relative" }}>
+            <Pressable
+              onPress={close}
+              style={{ position: "absolute", right: 0, top: 0 }}
+            >
+              <Text style={{ color: theme.text, fontWeight: "600" }}>
+                Close
+              </Text>
+            </Pressable>
+            <ResultCard data={result} />
+          </View>
         ) : (
           <>
             <Text
