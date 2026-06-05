@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import ConfidenceGauge from "./confidence-gauge";
 import useTheme from "@/hooks/use-theme-color";
 
@@ -8,7 +8,8 @@ export default function ResultCard({ data }: any) {
   const theme = useTheme();
 
   return (
-    <View
+    <ScrollView
+      showsVerticalScrollIndicator={false}
       style={{
         marginTop: 20,
         padding: 16,
@@ -24,7 +25,7 @@ export default function ResultCard({ data }: any) {
       }}
     >
       <Text style={{ fontSize: 18, fontWeight: "700", color: theme.text }}>
-        Result: {isSpam ? "🚨 SPAM DETECTED" : "✅ SAFE MESSAGE"}
+        {isSpam ? "🚨 SPAM DETECTED" : "✅ SAFE MESSAGE"}
       </Text>
 
       <View style={{ marginVertical: 20 }}>
@@ -72,9 +73,10 @@ export default function ResultCard({ data }: any) {
                   flex: 1,
                   color: theme.subtext,
                   lineHeight: 20,
+                  textTransform: "capitalize",
                 }}
               >
-                {reason}
+                {reason.replaceAll("_", " ")}
               </Text>
             </View>
           ))}
@@ -218,6 +220,6 @@ export default function ResultCard({ data }: any) {
           </View>
         </View>
       )}
-    </View>
+    </ScrollView>
   );
 }

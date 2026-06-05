@@ -5,6 +5,7 @@ import useTheme from "@/hooks/use-theme-color";
 import { SafeAreaView } from "react-native-safe-area-context";
 import LottieView from "lottie-react-native";
 import ResultCard from "@/components/result-card";
+import AntDesign from "@expo/vector-icons/AntDesign";
 
 export default function HomeScreen() {
   const theme = useTheme();
@@ -22,7 +23,6 @@ export default function HomeScreen() {
         { message: text },
       );
 
-      console.log("res.data", res.data);
       setResult(res.data);
     } catch (e: any) {
       console.error(
@@ -46,11 +46,9 @@ export default function HomeScreen() {
           <View style={{ flex: 1, position: "relative" }}>
             <Pressable
               onPress={close}
-              style={{ position: "absolute", right: 0, top: 0 }}
+              style={{ position: "absolute", right: 15, top: 33, zIndex: 1 }}
             >
-              <Text style={{ color: theme.text, fontWeight: "600" }}>
-                Close
-              </Text>
+              <AntDesign name="close" size={24} color={theme.text} />
             </Pressable>
             <ResultCard data={result} />
           </View>
