@@ -1,3 +1,4 @@
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
 from pydantic import BaseModel
 import joblib
@@ -7,6 +8,15 @@ model = joblib.load("models/spam_model.pkl")
 vectorizer = joblib.load("models/vectorizer.pkl")
 
 app = FastAPI()
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # tighten later
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 class SpamRequest(BaseModel):

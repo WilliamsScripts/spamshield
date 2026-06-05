@@ -14,10 +14,11 @@ export default function HomeScreen() {
 
   const analyze = async () => {
     const res = await axios.post(
-      "https://538a-102-90-124-1.ngrok-free.app/predict",
+      "https://spamshield-3hfx.onrender.com/predict",
       { message: text },
     );
 
+    console.log("res.data", res.data);
     setResult(res.data);
 
     // 👇 WAIT FOR STATE UPDATE SAFELY
