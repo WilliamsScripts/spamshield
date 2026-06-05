@@ -1,3 +1,4 @@
+import useTheme from "@/hooks/use-theme-color";
 import React from "react";
 import { View, Text } from "react-native";
 import Svg, { Circle } from "react-native-svg";
@@ -9,7 +10,7 @@ const circumference = 2 * Math.PI * radius;
 
 export default function ConfidenceGauge({ value }: { value: number }) {
   const progress = circumference - value * circumference;
-
+  const theme = useTheme();
   const color = value > 0.8 ? "#ef4444" : value > 0.5 ? "#f59e0b" : "#22c55e";
 
   return (
@@ -43,13 +44,21 @@ export default function ConfidenceGauge({ value }: { value: number }) {
           position: "absolute",
           top: 55,
           fontSize: 22,
+          color: theme.text,
           fontWeight: "bold",
         }}
       >
         {Math.round(value * 100)}%
       </Text>
 
-      <Text style={{ marginTop: 10, fontSize: 14, color: "#666" }}>
+      <Text
+        style={{
+          marginTop: 10,
+          fontSize: 14,
+          color: theme.text,
+          fontWeight: "600",
+        }}
+      >
         Confidence
       </Text>
     </View>
